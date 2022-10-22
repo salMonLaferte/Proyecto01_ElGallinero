@@ -1,7 +1,7 @@
 public class IdiomaTest {
     public static void main(String args[]){
         FabricaRegional fabricaRegional = new FabricaRegional();
-        InterfazDeUsuario interfaz = fabricaRegional.crearInterfaz("esp");
+        InterfazDeUsuario interfaz = fabricaRegional.crearInterfaz("espanol");
         System.out.println("Interfaz español: ");
         interfaz.saludar();
         interfaz.despedir();

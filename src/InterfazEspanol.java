@@ -5,9 +5,4 @@ public class InterfazEspanol extends InterfazDeUsuario{
         return "espanol";
     }
 
-    @Override
-    void establecerOfertas() {
-        //Codigo que establece las ofertas
-    }
-    
 }

@@ -4,10 +4,5 @@ public class InterfazIngles extends InterfazDeUsuario {
     String obtenerIdioma() {
         return "ingles";
     }
-
-    @Override
-    void establecerOfertas() {
-        //Codigo que establece las ofertas
-    }
     
 }

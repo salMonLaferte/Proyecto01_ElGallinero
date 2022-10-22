@@ -4,10 +4,4 @@ public class InterfazEspEspana extends InterfazDeUsuario {
     String obtenerIdioma() {
         return "esp_espana";
     }
-
-    @Override
-    void establecerOfertas() {
-        //Codigo que establece las ofertas
-    }
-    
 }

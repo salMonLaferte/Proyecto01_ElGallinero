@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Cliente implements Serializable{
+public class Cliente implements Serializable, Observador{
 
     private String nombreDeUsuario, contra, nombre, telefono, direccion, cuentaBancaria;
     private int pais;
@@ -74,3 +74,9 @@ public class Cliente implements Serializable{
     public String toString(){
         return "Nombre de Usuario: "+ nombreDeUsuario+", Nombre: "+nombre+", Telefono: "+telefono;
     }
+
+    @Override
+    public void update() {
+        
+    }
+}

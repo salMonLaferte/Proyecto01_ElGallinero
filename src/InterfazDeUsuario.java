@@ -7,15 +7,13 @@ public abstract class InterfazDeUsuario {
     
     protected HashMap<String,String>  textos = new HashMap<>(); 
    
-    protected HashMap<Long, Float> ofertas = new HashMap<>();
+    protected HashMap<Long, Float> ofertas = new HashMap<>(); //codigo de barras, descuento que se le aplica
 
     InterfazDeUsuario(){
         obtenerTextos();
     }
     
     abstract String obtenerIdioma();
-    
-    abstract void establecerOfertas();
     
     protected void obtenerTextos(){
         File archivo = null;
@@ -51,6 +49,10 @@ public abstract class InterfazDeUsuario {
 
     protected void despedir(){
         System.out.println(textos.get("Despedida"));
+    }
+
+    protected void muestraOpciones(){
+        System.out.println(textos.get("Opciones"));
     }
 
 }

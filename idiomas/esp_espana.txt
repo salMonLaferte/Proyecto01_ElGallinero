@@ -1,2 +1,3 @@
 Saludo--Joder tio, bienvenido, os prometo que habeis encontrado con pedazo de tienda!
 Despedida--¡Gracias por tu preferencia!
+Opciones--A continuacion os muestro el catalogo.
