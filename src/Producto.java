@@ -1,4 +1,4 @@
-public abstract class producto{
+public abstract class Producto{
     /**Codigo de barras que caracteriza cada producto */
     protected long codigo_de_barras;
     protected String nombre;
