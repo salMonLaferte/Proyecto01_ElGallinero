@@ -1,0 +1,2 @@
+Saludo--Hello, Welcome to the store!
+Despedida--Thank you for your visit, come back soon!

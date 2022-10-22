@@ -1,0 +1,2 @@
+Saludo--Hola, bienvenido a la tienda.
+Despedida--¡Gracias por su visita!
