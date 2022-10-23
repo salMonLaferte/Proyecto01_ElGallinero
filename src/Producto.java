@@ -19,7 +19,4 @@ public class Producto{
         producto += "Precio: " + precio + "\n";
     return producto;
     }
-    public double obtenerCodigo(){
-        return codigo_de_barras;
-    }
 }
