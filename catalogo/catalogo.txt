@@ -1,0 +1,9 @@
+1234567-- Microondas Whirlpool Silver-- Electrodomesticos-- 1890
+7654321-- Freidora de Aire RC-- Electrodomesticos-- 999
+0987654-- Licuadora Oster Acero Inoxidable-- Electrodomesticos-- 784
+2345678-- Laptop Hp Omen-- Electronica-- 49999
+9876543-- Bocina Echo Dot-- Electronica-- 749
+3456789-- Tv Philips 40 pulgadas-- Electronica-- 4999
+4567890-- Leche Alpura Clásica-- Alimentos-- 27
+5678901-- Huevo Blanco Gena 30-- Alimentos-- 76
+6789012-- Galletas Chokis clásica-- Alimentos-- 35
