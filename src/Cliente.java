@@ -108,7 +108,7 @@ public class Cliente implements Serializable, Observador{
         }
     }
 
-    public Cliente regresaCliente(){
+    public Cliente regresaCliente() throws ClassNotFoundException{
         try{
             Scanner sc = new Scanner(System.in);
             FileInputStream fis = new FileInputStream(starting);
