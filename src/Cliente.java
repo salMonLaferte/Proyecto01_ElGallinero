@@ -9,10 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
-public class Cliente implements Serializable, Observador{
+public class Cliente implements Serializable{
 
     private String nombreDeUsuario, contra, nombre, telefono, direccion, cuentaBancaria, pais;
     File starting = new File("./datos");
@@ -136,11 +135,6 @@ public class Cliente implements Serializable, Observador{
             System.out.println(e);
         }
         return null;
-    }
-
-    @Override
-    public void update(HashMap <Long, Float> ofertas) throws IOException {
-    
     }
     
     public static void escribir(Cliente cliente) throws IOException{
