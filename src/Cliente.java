@@ -1,20 +1,23 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Cliente implements Serializable, Observador{
 
-    private String nombreDeUsuario, contra, nombre, telefono, direccion, cuentaBancaria;
-    private int pais;
+    private String nombreDeUsuario, contra, nombre, telefono, direccion, cuentaBancaria, pais;
     File starting = new File("./datos");
  
-    public Cliente(String nombreDeUsuario, String contra, String nombre, String telefono, String direccion, String cuentaBancaria, int pais ){
+    public Cliente(String nombreDeUsuario, String contra, String nombre, String telefono, String direccion, String cuentaBancaria, String pais ){
         this.nombreDeUsuario=nombreDeUsuario;
         this.contra=contra;
         this.nombre=nombre;
@@ -48,7 +51,7 @@ public class Cliente implements Serializable, Observador{
         this.cuentaBancaria=cuentaBancaria;
     }
 
-    public void setPais(int pais){
+    public void setPais(String pais){
         this.pais=pais;
     }
 
@@ -76,7 +79,7 @@ public class Cliente implements Serializable, Observador{
         return cuentaBancaria;
     }
 
-    public int getPais(){
+    public String getPais(){
         return pais;
     }
 
@@ -89,9 +92,9 @@ public class Cliente implements Serializable, Observador{
             if(!starting.exists()){
                 starting.createNewFile();
             }else{
-                Cliente mexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", 1);
-                Cliente espania = new Cliente("ClienteEspanol", "vegeta777", "Camila", "912760000", "Casa", "ES56123", 2);
-                Cliente usa = new Cliente("ClienteUSA","Obanium" ,"Danny ", "01793060836", "Casa blanca", "US98765", 3);
+                Cliente mexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "MX");
+                Cliente espania = new Cliente("ClienteEspanol", "vegeta777", "Camila", "912760000", "Casa", "ES56123", "ESP");
+                Cliente usa = new Cliente("ClienteUSA","Obanium" ,"Danny ", "01793060836", "Casa blanca", "US98765", "USA");
                 ArrayList<Cliente> listaDeClientes = new ArrayList<>();
                 listaDeClientes.add(mexico);
                 listaDeClientes.add(espania);
@@ -136,7 +139,33 @@ public class Cliente implements Serializable, Observador{
     }
 
     @Override
-    public void update() {
+    public void update(HashMap <Long, Float> ofertas) throws IOException {
+    
+    }
+    
+    public static void escribir(Cliente cliente) throws IOException{
+       try{
+        BufferedReader in = new BufferedReader(new FileReader("./ofertas.txt"));
+        String line;
+        while(((line=in.readLine())!=null)){ 
+            String nuevo = line.replace("{","").replace("}","").replace("=", ", Con un % de descuento: ");
+            if(nuevo.contains(cliente.getPais())){
+                System.out.println(nuevo);
+            }
+            
+        }
         
+    
+        in.close();
+       }catch(FileNotFoundException e){
+        System.out.println(e);
+       }catch(IOException ioe){
+        System.out.println(ioe);
+       }
+    }
+
+    public static void main(String[] args) throws IOException {
+        Cliente mexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "ESP");
+        escribir(mexico);
     }
 }
