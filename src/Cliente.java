@@ -14,8 +14,7 @@ import java.util.Scanner;
 public class Cliente implements Serializable{
 
     private String nombreDeUsuario, contra, nombre, telefono, direccion, cuentaBancaria, pais;
-    File starting = new File("./datos");
- 
+    
     public Cliente(String nombreDeUsuario, String contra, String nombre, String telefono, String direccion, String cuentaBancaria, String pais ){
         this.nombreDeUsuario=nombreDeUsuario;
         this.contra=contra;
@@ -86,40 +85,42 @@ public class Cliente implements Serializable{
         return "Nombre de Usuario: "+ nombreDeUsuario+", Nombre: "+nombre+", Telefono: "+telefono;
     }
 
-    public void crearClientes(){
+    public static void crearClientes(){
+        File starting = new File("./datosClientes/datos");
         try{
             if(!starting.exists()){
                 starting.createNewFile();
-            }else{
-                Cliente mexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "MX");
-                Cliente espania = new Cliente("ClienteEspanol", "vegeta777", "Camila", "912760000", "Casa", "ES56123", "ESP");
-                Cliente usa = new Cliente("ClienteUSA","Obanium" ,"Danny ", "01793060836", "Casa blanca", "US98765", "USA");
-                ArrayList<Cliente> listaDeClientes = new ArrayList<>();
-                listaDeClientes.add(mexico);
-                listaDeClientes.add(espania);
-                listaDeClientes.add(usa);
-                FileOutputStream fos = new FileOutputStream(starting);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(listaDeClientes);
-                oos.close();
-                fos.close();
-                System.out.println("guardado!");
             }
+            Cliente mexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "MX");
+            Cliente espania = new Cliente("ClienteEspanol", "vegeta777", "Camila", "912760000", "Casa", "ES56123", "ESP");
+            Cliente usa = new Cliente("ClienteUSA","Obanium" ,"Danny ", "01793060836", "Casa blanca", "US98765", "USA");
+            ArrayList<Cliente> listaDeClientes = new ArrayList<>();
+            listaDeClientes.add(mexico);
+            listaDeClientes.add(espania);
+            listaDeClientes.add(usa);
+            FileOutputStream fos = new FileOutputStream(starting);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(listaDeClientes);
+            oos.close();
+            fos.close();
         } catch(IOException e){
             System.out.println(e);
         }
     }
 
-    public Cliente regresaCliente() throws ClassNotFoundException{
+    public static Cliente validarCliente() throws ClassNotFoundException{
+        File starting = new File("./datosClientes/datos");
         try{
             Scanner sc = new Scanner(System.in);
             FileInputStream fis = new FileInputStream(starting);
             ObjectInputStream ois = new ObjectInputStream(fis);
-             ArrayList<Cliente> c = (ArrayList<Cliente>)ois.readObject();
-             System.out.println("Escribe tu nombre de usuario");
-                String nombreDeUsuario=sc.nextLine();
+            ArrayList<Cliente> c = (ArrayList<Cliente>)ois.readObject();
+            System.out.println("Escribe tu nombre de usuario");
+            String nombreDeUsuario=sc.nextLine();
+            boolean indicadorUsuarioExiste = false;
             for(Cliente cliente:c){
                 if(cliente.getNombreDeUsuario().equals(nombreDeUsuario)){
+                    indicadorUsuarioExiste = true;
                     System.out.println("Escribe la contrasenia");
                     String contra = sc.nextLine();
                     if (cliente.getContra().equals(contra)){
@@ -128,8 +129,9 @@ public class Cliente implements Serializable{
                     System.out.println("La contra es incorrecta :-{");
                     break;
                 }
+            }
+            if(!indicadorUsuarioExiste){
                 System.out.println("Ese nombre de usuario no existe");
-                break;
             }
         }catch(IOException e){
             System.out.println(e);
@@ -137,29 +139,27 @@ public class Cliente implements Serializable{
         return null;
     }
     
-    public static void escribir(Cliente cliente) throws IOException{
-       try{
+    public void escribirOfertas() throws IOException{
+        try{
         BufferedReader in = new BufferedReader(new FileReader("./ofertas.txt"));
         String line;
         while(((line=in.readLine())!=null)){ 
             String nuevo = line.replace("{","").replace("}","").replace("=", ", Con un % de descuento: ");
-            if(nuevo.contains(cliente.getPais())){
+            if(nuevo.contains(this.getPais())){
                 System.out.println(nuevo);
             }
             
         }
-        
-    
         in.close();
-       }catch(FileNotFoundException e){
-        System.out.println(e);
-       }catch(IOException ioe){
-        System.out.println(ioe);
-       }
+        }catch(FileNotFoundException e){
+            System.out.println(e);
+        }catch(IOException ioe){
+            System.out.println(ioe);
+        }
     }
 
     public static void main(String[] args) throws IOException {
         Cliente mexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "ESP");
-        escribir(mexico);
+        mexico.escribirOfertas();
     }
 }

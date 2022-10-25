@@ -11,12 +11,13 @@ public class Producto{
         this.departamento = departamento;
         this.precio = precio;
     }
+
     @Override
     public final String toString(){
         String producto = "Codigo de barras: " + codigo_de_barras + "\n";
         producto += "Nombre: " + nombre + "\n";
         producto += "Departamento: " + departamento + "\n";
         producto += "Precio: " + precio + "\n";
-    return producto;
+        return producto;
     }
 }

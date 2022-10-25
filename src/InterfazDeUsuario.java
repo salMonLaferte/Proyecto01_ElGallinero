@@ -7,8 +7,6 @@ public abstract class InterfazDeUsuario {
     
     protected HashMap<String,String>  textos = new HashMap<>(); 
    
-    protected HashMap<Long, Float> ofertas = new HashMap<>(); //codigo de barras, descuento que se le aplica
-
     InterfazDeUsuario(){
         obtenerTextos();
     }

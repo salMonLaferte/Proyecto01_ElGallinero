@@ -6,17 +6,26 @@ import java.io.FileReader;
 
 public class Catalogo {
 
-    public static ArrayList<Producto> productos;
+    private ArrayList<Producto> productos;
+    private static Catalogo instanciaUnica;
 
-    public Catalogo(){
-        this.productos = new ArrayList<Producto>();
+    private Catalogo(){
+        productos = new ArrayList<Producto>();
+    }
+
+    public static Catalogo obtenerInstanciaUnica(){
+        if(instanciaUnica == null){
+            instanciaUnica = new Catalogo();
+            leerCatalogoDeArchivo();
+        }
+        return instanciaUnica;
     }
 
     public Iterator<Producto> obtenerIterador(){
         return productos.iterator();
     }
      
-    public static ArrayList<Producto> obtenerTextos(){
+    private static void leerCatalogoDeArchivo(){
         File archivo = null;
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
@@ -30,7 +39,7 @@ public class Catalogo {
                 if(keyVal.length == 4){
                     Producto producto = new Producto(Long.parseLong(keyVal[0]), keyVal[1], keyVal[2], Double.parseDouble(keyVal[3])); 
                     System.out.println(producto);
-                    productos.add(producto);
+                    instanciaUnica.productos.add(producto);
                 }
             }
         }catch(Exception e){
@@ -44,12 +53,5 @@ public class Catalogo {
                 e2.printStackTrace();
             }
         }
-        return productos;
     }
-
-    public Producto get(int i) {
-        Producto producto = productos.get(i);
-        return producto;
-    }
-
 }

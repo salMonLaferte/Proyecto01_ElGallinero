@@ -3,14 +3,27 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 public class Ofertas {
     
-    public static HashMap<String, Integer> generaOfertas(){
-        HashMap<String,Integer>listaDeDescuento=new HashMap<>();
+    HashMap<String, Integer> ofertas;
+    private static Ofertas instanciaUnica;
+
+    private Ofertas(){
+        ofertas = new HashMap<>();
+    }
+
+    public static Ofertas obtenerInstanciaUnica(){
+        if(instanciaUnica == null){
+            instanciaUnica = new Ofertas();
+            generaOfertas();
+        }
+        return instanciaUnica;
+    }
+    
+    public static void generaOfertas(){
         Random rand = new Random();
         int ofertasAzar = rand.nextInt(10);
         try{
@@ -19,37 +32,34 @@ public class Ofertas {
             while(((line=in.readLine())!=null)){
                 int descuento = rand.nextInt(101);
                 if(line.contains("Electrodomesticos")&&line.contains(Integer.toString(ofertasAzar))){
-                    String ofertasEsp = "\nESP: ";
+                    String ofertasEsp = "\nESP--";
                     ofertasEsp += line;
-                    listaDeDescuento.put(ofertasEsp, descuento);
-
+                    instanciaUnica.ofertas.put(ofertasEsp, descuento);
                 }
                 if(line.contains("Alimento")&&line.contains(Integer.toString(ofertasAzar))){
-                    String ofertasMex = "\nMX: ";
+                    String ofertasMex = "\nMX--";
                     ofertasMex += line;
-                    listaDeDescuento.put(ofertasMex, descuento);
+                    instanciaUnica.ofertas.put(ofertasMex, descuento);
                 }
                 if(line.contains("Electronica")&&line.contains(Integer.toString(ofertasAzar))){
-                    String ofertasUSA = "\nUSA: ";
+                    String ofertasUSA = "\nUSA--";
                     ofertasUSA += line;
-                    listaDeDescuento.put(ofertasUSA, descuento);
+                    instanciaUnica.ofertas.put(ofertasUSA, descuento);
                 }
                     
         }
             in.close();
-            return listaDeDescuento;
            }catch(FileNotFoundException e){
             System.out.println(e);
            }catch(IOException ioe){
             System.out.println(ioe);
            }
-        return listaDeDescuento;
     }
 
-    public static void enviaOfertas(HashMap<String, Integer> hashMap){
-        String nombreDelArchivo = "ofertas.txt";
+    public static void enviaOfertas(){
+        String nombreDelArchivo = "./ofertasClientes/ofertas.txt";
         try(PrintStream fout = new PrintStream(nombreDelArchivo)){
-            fout.println(hashMap);
+            fout.println(instanciaUnica.ofertas);
         }catch(FileNotFoundException e){
             System.out.println(e);
         }

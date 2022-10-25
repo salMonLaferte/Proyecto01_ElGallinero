@@ -1,7 +1,9 @@
-import java.nio.FloatBuffer;
+import java.util.Iterator;
 
-public class IdiomaTest {
+public class Pruebas {
     public static void main(String args[]){
+        ///Interfaz
+        System.out.println("-------- INTERFAZ ---------");
         FabricaRegional fabricaRegional = new FabricaRegional();
         InterfazDeUsuario interfaz = fabricaRegional.crearInterfaz("espanol");
         System.out.println("Interfaz español: ");
@@ -15,15 +17,18 @@ public class IdiomaTest {
         interfaz = fabricaRegional.crearInterfaz("esp_espana");
         interfaz.saludar();
         interfaz.despedir();
-        //catalogoooo
+        //Catalogo
         System.out.println("-------- CATALOGO ---------");
-        Catalogo catalogo = new Catalogo();
-        Catalogo.obtenerTextos();
+        Catalogo catalogo = Catalogo.obtenerInstanciaUnica();
         ///Producto
-        System.out.println(catalogo.get(0).codigo_de_barras);
-        System.out.println(catalogo.get(3).nombre);
-        System.out.println(catalogo.get(7).departamento);
-        System.out.println(catalogo.get(0).precio);
+        Iterator<Producto> it = catalogo.obtenerIterador();
+        while(it.hasNext()){
+            Producto p = it.next();
+            System.out.println(p);
+        }
+        //Ofertas
+        Ofertas ofertas = Ofertas.obtenerInstanciaUnica();
+        Ofertas.enviaOfertas();
 
     }
 }
