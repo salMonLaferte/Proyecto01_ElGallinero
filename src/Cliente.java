@@ -13,9 +13,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Cliente implements Serializable{
+public class Cliente implements Serializable, Observador{
 
     private String nombreDeUsuario, contra, nombre, telefono, direccion, cuentaBancaria, pais;
+    private static ArrayList<Cliente> listaDeClientes = new ArrayList<>();
     
     public Cliente(String nombreDeUsuario, String contra, String nombre, String telefono, String direccion, String cuentaBancaria, String pais ){
         this.nombreDeUsuario=nombreDeUsuario;
@@ -93,13 +94,16 @@ public class Cliente implements Serializable{
             if(!starting.exists()){
                 starting.createNewFile();
             }
-            Cliente mexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "MX");
-            Cliente espania = new Cliente("ClienteEspanol", "vegeta777", "Camila", "912760000", "Casa", "ES56123", "ESP");
-            Cliente usa = new Cliente("ClienteUSA","Obanium" ,"Danny ", "01793060836", "Casa blanca", "US98765", "USA");
-            ArrayList<Cliente> listaDeClientes = new ArrayList<>();
-            listaDeClientes.add(mexico);
-            listaDeClientes.add(espania);
-            listaDeClientes.add(usa);
+            Cliente ClienteMexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "MX");
+            Cliente ClienteEspania = new Cliente("ClienteEspanol", "vegeta777", "Camila", "912760000", "Casa", "ES56123", "ESP");
+            Cliente ClienteUSA = new Cliente("ClienteUSA","Obanium" ,"Danny ", "01793060836", "Casa blanca", "US98765", "USA");
+            listaDeClientes.add(ClienteMexico);
+            listaDeClientes.add(ClienteEspania);
+            listaDeClientes.add(ClienteUSA);
+            Ofertas ofertas = Ofertas.obtenerInstanciaUnica();
+            ofertas.registrarObservador(ClienteMexico);
+            ofertas.registrarObservador(ClienteEspania);
+            ofertas.registrarObservador(ClienteUSA);
             FileOutputStream fos = new FileOutputStream(starting);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(listaDeClientes);
@@ -173,7 +177,7 @@ public class Cliente implements Serializable{
                  fw.write(nuevo+"\n");
                 }
             }
-            fw.write(">>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<");
+            fw.write(">>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<\n");
             fw.close();
             in.close();
             }catch(FileNotFoundException e){
@@ -187,5 +191,14 @@ public class Cliente implements Serializable{
         Cliente mexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "ESP");
         mexico.escribirOfertas();
         mexico.mostrarOfertaAlCliente();
+    }
+
+    @Override
+    public void update() {
+        try {
+            mostrarOfertaAlCliente();
+        } catch (Exception e) {
+            System.out.println("No se pudieron mostrar las ofertas al cliente");
+        }
     }
 }

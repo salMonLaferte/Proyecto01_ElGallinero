@@ -4,5 +4,4 @@ public class InterfazEspanol extends InterfazDeUsuario{
     String obtenerIdioma() {
         return "MX";
     }
-
 }

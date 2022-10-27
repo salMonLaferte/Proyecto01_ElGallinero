@@ -1,0 +1,8 @@
+MX--5678901-- Huevo Blanco Gena 30-- Alimentos-- 76, Con un % de descuento: 73, 
+MX--4567890-- Leche Alpura Clásica-- Alimentos-- 27, Con un % de descuento: 14, 
+MX--6789012-- Galletas Chokis clásica-- Alimentos-- 35, Con un % de descuento: 57, 
+>>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<
+MX--5678901-- Huevo Blanco Gena 30-- Alimentos-- 76, Con un % de descuento: 73, 
+MX--4567890-- Leche Alpura Clásica-- Alimentos-- 27, Con un % de descuento: 14, 
+MX--6789012-- Galletas Chokis clásica-- Alimentos-- 35, Con un % de descuento: 57, 
+>>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<

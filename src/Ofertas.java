@@ -3,13 +3,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Ofertas {
+public class Ofertas implements Observable{
     
     HashMap<String, Integer> ofertas;
+    ArrayList<Observador> observadores = new ArrayList<>();
     private static Ofertas instanciaUnica;
+
 
     private Ofertas(){
         ofertas = new HashMap<>();
@@ -65,5 +68,21 @@ public class Ofertas {
         }
     }
 
+    @Override
+    public void registrarObservador(Observador observador) {
+        observadores.add(observador);
+    }
+
+    @Override
+    public void removerObservador(Observador observador) {
+        observadores.remove(observador);
+    }
+
+    @Override
+    public void notificarObservadores() {
+        for (Observador observador : observadores) {
+            observador.update();
+        }
+    }
     
 }
