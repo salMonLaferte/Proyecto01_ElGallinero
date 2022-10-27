@@ -1,9 +1,11 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -141,7 +143,7 @@ public class Cliente implements Serializable{
     
     public void escribirOfertas() throws IOException{
         try{
-        BufferedReader in = new BufferedReader(new FileReader("./ofertas.txt"));
+        BufferedReader in = new BufferedReader(new FileReader("./ofertasClientes/ofertas.txt"));
         String line;
         while(((line=in.readLine())!=null)){ 
             String nuevo = line.replace("{","").replace("}","").replace("=", ", Con un % de descuento: ");
@@ -158,8 +160,32 @@ public class Cliente implements Serializable{
         }
     }
 
+    public void mostrarOfertaAlCliente() throws IOException{
+        String nombreDeUsuario=this.nombreDeUsuario;
+        File file = new File("./ofertasClientes/"+nombreDeUsuario+".txt");
+        FileWriter fw= new FileWriter(file,true);
+        try{
+            BufferedReader in = new BufferedReader(new FileReader("./ofertasClientes/ofertas.txt"));
+            String line;
+            while(((line=in.readLine())!=null)){ 
+                String nuevo = line.replace("{","").replace("}","").replace("=", ", Con un % de descuento: ");
+                if(nuevo.contains(this.getPais())){
+                 fw.write(nuevo+"\n");
+                }
+            }
+            fw.write(">>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<");
+            fw.close();
+            in.close();
+            }catch(FileNotFoundException e){
+                System.out.println(e);
+            }catch(IOException ioe){
+                System.out.println(ioe);
+            }
+    }
+
     public static void main(String[] args) throws IOException {
         Cliente mexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "ESP");
         mexico.escribirOfertas();
+        mexico.mostrarOfertaAlCliente();
     }
 }
