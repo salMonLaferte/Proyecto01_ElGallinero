@@ -1,0 +1,3 @@
+ClienteMexicano--arribaLasChivas--Carlos--5544823369--Facultad de Ciencias--MX0123456--MX--500
+ClienteEspanol--vegeta777--Camila--912760000--Casa--ES56123--ESP--700
+ClienteUSA--Obanium--Danny--01793060836--Casa blanca--US98765--USA--1200

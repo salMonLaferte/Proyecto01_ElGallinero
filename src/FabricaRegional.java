@@ -2,13 +2,13 @@
 
 public class FabricaRegional {
     InterfazDeUsuario crearInterfaz(String idioma){
-        if(idioma == "ingles"){
+        if(idioma.equals("USA")){
             return new InterfazIngles();
         }
-        if(idioma == "esp_espana"){
+        if(idioma.equals("ESP")){
             return new InterfazEspEspana();
         }
-        //Español como idioma por defecto
+        //Español mexicano como idioma por defecto
         return new InterfazEspanol();
     }
 

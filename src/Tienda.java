@@ -10,7 +10,7 @@ public class Tienda {
 
     public static void main(String args[] ){
         //Crea la base de datos de clientes de prueba
-        Cliente.crearClientes();
+        Cliente.leerClientes();
         //Genera las ofertas regionales y los guarda en ofertas.txt
         Ofertas.generaOfertas();
         //Notifica a cada uno de los clientes
@@ -19,8 +19,9 @@ public class Tienda {
         //Pedir el inicio de sesión de la clase
         try {
             cliente = Cliente.validarCliente();
-            if(cliente == null)
+            if(cliente == null){
                 return;
+            }
         } catch (Exception e) {
             System.out.println("Ha ocurrido un error.");
             return;

@@ -1,14 +1,9 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,9 +11,10 @@ import java.util.Scanner;
 public class Cliente implements Serializable, Observador{
 
     private String nombreDeUsuario, contra, nombre, telefono, direccion, cuentaBancaria, pais;
+    double dineroDisponible;
     private static ArrayList<Cliente> listaDeClientes = new ArrayList<>();
     
-    public Cliente(String nombreDeUsuario, String contra, String nombre, String telefono, String direccion, String cuentaBancaria, String pais ){
+    public Cliente(String nombreDeUsuario, String contra, String nombre, String telefono, String direccion, String cuentaBancaria, String pais, double dinero ){
         this.nombreDeUsuario=nombreDeUsuario;
         this.contra=contra;
         this.nombre=nombre;
@@ -26,6 +22,7 @@ public class Cliente implements Serializable, Observador{
         this.direccion=direccion;
         this.cuentaBancaria=cuentaBancaria;
         this.pais=pais;
+        this.dineroDisponible = dinero;
     }
 
     public void setNombreDeUsuario(String nombreDeUsuario){
@@ -88,59 +85,56 @@ public class Cliente implements Serializable, Observador{
         return "Nombre de Usuario: "+ nombreDeUsuario+", Nombre: "+nombre+", Telefono: "+telefono;
     }
 
-    public static void crearClientes(){
-        File starting = new File("./datosClientes/datos");
+    protected static void leerClientes(){
+        File archivo = null;
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
         try{
-            if(!starting.exists()){
-                starting.createNewFile();
-            }
-            Cliente ClienteMexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "MX");
-            Cliente ClienteEspania = new Cliente("ClienteEspanol", "vegeta777", "Camila", "912760000", "Casa", "ES56123", "ESP");
-            Cliente ClienteUSA = new Cliente("ClienteUSA","Obanium" ,"Danny ", "01793060836", "Casa blanca", "US98765", "USA");
-            listaDeClientes.add(ClienteMexico);
-            listaDeClientes.add(ClienteEspania);
-            listaDeClientes.add(ClienteUSA);
-            Ofertas ofertas = Ofertas.obtenerInstanciaUnica();
-            ofertas.registrarObservador(ClienteMexico);
-            ofertas.registrarObservador(ClienteEspania);
-            ofertas.registrarObservador(ClienteUSA);
-            FileOutputStream fos = new FileOutputStream(starting);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(listaDeClientes);
-            oos.close();
-            fos.close();
-        } catch(IOException e){
-            System.out.println(e);
-        }
-    }
-
-    public static Cliente validarCliente() throws ClassNotFoundException{
-        File starting = new File("./datosClientes/datos");
-        try{
-            Scanner sc = new Scanner(System.in);
-            FileInputStream fis = new FileInputStream(starting);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            ArrayList<Cliente> c = (ArrayList<Cliente>)ois.readObject();
-            System.out.println("Escribe tu nombre de usuario");
-            String nombreDeUsuario=sc.nextLine();
-            boolean indicadorUsuarioExiste = false;
-            for(Cliente cliente:c){
-                if(cliente.getNombreDeUsuario().equals(nombreDeUsuario)){
-                    indicadorUsuarioExiste = true;
-                    System.out.println("Escribe la contrasenia");
-                    String contra = sc.nextLine();
-                    if (cliente.getContra().equals(contra)){
-                        return cliente; 
-                    }
-                    System.out.println("La contra es incorrecta :-{");
-                    break;
+            archivo = new File("./datosClientes/clientes.txt");
+            fileReader = new FileReader(archivo);
+            bufferedReader = new BufferedReader(fileReader);
+            String linea;
+            while( (linea = bufferedReader.readLine() ) != null){
+                String[] param = linea.split("--");
+                if(param.length ==8){
+                    Cliente cliente = new Cliente(param[0], param[1], param[2], param[3], param[4], param[5], param[6], Double.parseDouble(param[7]) );
+                    listaDeClientes.add(cliente);
+                    Ofertas ofertas = Ofertas.obtenerInstanciaUnica();
+                    ofertas.registrarObservador(cliente);
                 }
             }
-            if(!indicadorUsuarioExiste){
-                System.out.println("Ese nombre de usuario no existe");
+        } catch(Exception e){
+            e.printStackTrace();
+         }finally{
+            try{                    
+               if( null != fileReader ){   
+                  fileReader.close();     
+               }                  
+            }catch (Exception e2){ 
+               e2.printStackTrace();
             }
-        }catch(IOException e){
-            System.out.println(e);
+         }
+    }
+
+    public static Cliente validarCliente(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Escribe tu nombre de usuario");
+        String nombreDeUsuario=sc.nextLine();
+        boolean indicadorUsuarioExiste = false;
+        for (Cliente cliente : listaDeClientes) {
+            if(cliente.getNombreDeUsuario().equals(nombreDeUsuario)){
+                indicadorUsuarioExiste = true;
+                System.out.println("Escribe la contrasenia");
+                String contra = sc.nextLine();
+                if(cliente.getContra().equals(contra)){
+                    return cliente;
+                }
+                System.out.println("La contra es incorrecta :-{");
+                break;
+            }
+        }
+        if(!indicadorUsuarioExiste){
+            System.out.println("Ese nombre de usuario no existe");
         }
         return null;
     }
@@ -185,12 +179,6 @@ public class Cliente implements Serializable, Observador{
             }catch(IOException ioe){
                 System.out.println(ioe);
             }
-    }
-
-    public static void main(String[] args) throws IOException {
-        Cliente mexico= new Cliente("ClienteMexicano", "arribaLasChivas", "Carlos", "5544823369", "Facultad de Ciencias", "MX0123456", "ESP");
-        mexico.escribirOfertas();
-        mexico.mostrarOfertaAlCliente();
     }
 
     @Override
