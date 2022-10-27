@@ -3,16 +3,28 @@ import java.util.Iterator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+/** Clase que representa la clase original del Catalogo  */
 
 public class Catalogo implements CatalogoInterface{
 
+    /** Array que guardara nuestros productos leidos por el txt */
     private ArrayList<Producto> productos;
+    /** Catalogo original */
     private static Catalogo instanciaUnica;
 
+    /**
+     * Metodo constructor de la clase Catalogo
+     */
     private Catalogo(){
         productos = new ArrayList<Producto>();
     }
 
+    /**
+     * Metodo estatico que manda a llamar el metodo
+     * leerCatalogoDeArchivo(), regresando el catalogo
+     * original.
+     * @return Catalogo original
+     */
     public static Catalogo obtenerInstanciaUnica(){
         if(instanciaUnica == null){
             instanciaUnica = new Catalogo();
@@ -21,10 +33,20 @@ public class Catalogo implements CatalogoInterface{
         return instanciaUnica;
     }
 
+    /**
+     * Metodo que obtiene el iterador del ArrayList que 
+     * contiene los productos.
+     * @return Iterador de lista.
+     */
     public  Iterator<Producto> obtenerIterador(){
         return productos.iterator();
     }
-     
+
+    /**
+     * Metodo que permite leer el archivo txt donde se 
+     * encuentra contenido el catalogo original y asi mismo
+     * crear los productos que se irán agregando al ArrayList.
+     */
     private static void leerCatalogoDeArchivo(){
         File archivo = null;
         FileReader fileReader = null;
@@ -55,13 +77,20 @@ public class Catalogo implements CatalogoInterface{
         }
     }
 
+    /**
+     * Metodo que imprime el ArrayList que representa el 
+     * catalogo original.
+     */
     @Override
     public void ImprimirCatalogo() {
         for (Producto producto : productos) {
             System.out.println(producto);
         }
     }
-
+    
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public Producto obtenerProducto(int index) {
         return productos.get(index);

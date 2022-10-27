@@ -1,13 +1,21 @@
 import java.util.Scanner;
 
 public class Tienda {
-
+    /** Scanner que leera lo ingresado en la consola por el cliente */
     private static Scanner scan = new Scanner(System.in);
+    /** FabricaRegional para la detección del idioma */
     private static FabricaRegional fabricaRegional = new FabricaRegional();
+    /** InterfazDeUsuario para el cambio de idiomas */
     private static InterfazDeUsuario interfazDeUsuario = null;
+    /** ProxyCliente para representar al cliente real que realizara
+     * la compra.
+     */
     private static ProxyCliente proxyCliente = null;
 
-
+    /**
+     * Metodo que permite el arranque del programa.
+     * @param args Array de argumentos
+     */
     public static void main(String args[] ){
         //Lee la lista de clientes desde un archivo de texto
         Cliente.leerClientes();
