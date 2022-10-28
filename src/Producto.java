@@ -1,7 +1,7 @@
 /**Clase que representa un producto del catalogo */
 public class Producto{
     /**Codigo de barras que caracteriza cada producto */
-    protected long codigoDeBarras;
+    protected String codigoDeBarras;
     /** Nombre del producto */
     protected String nombre;
     /** Departamento del producto */
@@ -16,7 +16,7 @@ public class Producto{
      * @param departamento Departamento del producto
      * @param precio Precio del producto
      */
-    public Producto(long codigoDeBarras, String nombre, String departamento, double precio){
+    public Producto(String codigoDeBarras, String nombre, String departamento, double precio){
         this.codigoDeBarras = codigoDeBarras;
         this.nombre = nombre;
         this.departamento = departamento;
@@ -47,7 +47,7 @@ public class Producto{
         return departamento;
     }
 
-    public long getCodigoDeBarras(){
+    public String getCodigoDeBarras(){
         return codigoDeBarras;
     } 
 

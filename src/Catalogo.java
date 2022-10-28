@@ -59,7 +59,7 @@ public class Catalogo implements CatalogoInterface{
             while( (linea = bufferedReader.readLine() ) != null){
                 String[] keyVal = linea.split("--");
                 if(keyVal.length == 4){
-                    Producto producto = new Producto(Long.parseLong(keyVal[0]), keyVal[1], keyVal[2], Double.parseDouble(keyVal[3])); 
+                    Producto producto = new Producto(keyVal[0], keyVal[1], keyVal[2], Double.parseDouble(keyVal[3])); 
                     instanciaUnica.productos.add(producto);
                 }
             }

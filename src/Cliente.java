@@ -233,7 +233,7 @@ public class Cliente implements Serializable, Observador, ClienteInterface{
                 break;
             }
         }
-        if(!indicadorUsuarioExiste){
+        if(!indicadorUsuarioExiste && !nombreDeUsuario.equals("terminar")){
             System.out.println("Ese nombre de usuario no existe");
         }
         return null;

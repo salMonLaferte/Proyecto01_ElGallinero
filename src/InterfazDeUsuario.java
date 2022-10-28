@@ -90,4 +90,12 @@ public abstract class InterfazDeUsuario {
         System.out.println("1." + textos.get("Si"));
         System.out.println("2." + textos.get("No"));
     }
+
+    public void mostrarMensajeMonto(){
+        System.out.print(textos.get("Monto"));
+    }
+
+    public String getMensaje(String key){
+        return textos.get(key);
+    }
 }

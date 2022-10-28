@@ -23,8 +23,9 @@ public class Pruebas {
         ///Producto
         catalogo.ImprimirCatalogo();
         //Ofertas
-        Ofertas ofertas = Ofertas.obtenerInstanciaUnica();
+        Ofertas.generaOfertas();
         Ofertas.enviaOfertas();
+        
 
     }
 }

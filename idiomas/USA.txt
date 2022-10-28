@@ -14,3 +14,13 @@ CuentaValidada--Your bank account was succesfully validated.
 Confirmacion--¿Are you sure you want to complete this pruchase?
 Si--Yes
 No--No
+Monto--The total of your purchase is: 
+Cantidad--Amount
+Descuento--Discount
+Total--Total
+CompraCancelada--Order has been canceled.
+CompraConcretada--Your purchase has been succesfully processed. Here is your ticket.
+Regresando--Returning to login screen.
+CuentaIncorrecta--The bank account does not match, purchase has been canceled.
+SaldoInsuficiente--Your balance is insufficient, purchase canceled.
+FechaEntrega--Your order should be delivered at: 

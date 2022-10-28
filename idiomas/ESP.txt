@@ -1,4 +1,26 @@
-Saludo--Querido comprador, ¡bienvenido!
-Despedida--¡Gracias por tu preferencia!
-Opciones--A continuacion os muestro el catalogo.
-Menu--¿Que deseas hacer?\n1.Ver catalogo\n2.Realizar una compra\n3.Salir.
+Saludo--Buen día, bienvenido a la tienda!
+Despedida--Le agradecemos mucho su visita, vuelva pronto!
+MenuTexto--¿Que es lo que desea realizar?
+OpcionCatalogo--Ver catalogo
+OpcionCompra--Comprar
+OpcionSalir--Salir
+Indicacion--Introduzca el numero del producto para agregarlo a vuestro carrito de compras.
+Indicacion2--Introduzca 0 para cuando hayais terminado de seleccionar productos.
+Indicacion3--Introduzca -1 para cancelar tu compra.
+ProductoAgregado--El producto ha sido añadido a su carrito exitosamente!
+CompraSegura--Esta es la pantalla de compra segura.
+IntroduceCuenta--Por favor introduzca el numero de su cuenta bancaria para continuar.
+CuentaValidada--Su cuenta bancaria fue validada existosamente.
+Confirmacion--¿Esta seguro de querer completar esta compra?
+Si--Si
+No--No
+Monto--El total de vuestra compra es:
+Cantidad--Cantidad
+Descuento--Descuento
+Total--Total
+CompraCancelada--Su orden ha sido cancelada
+CompraConcretada--Su compra se procesó exitosamente. Aqui esta su ticket de compra.
+Regresando--Regresando a la pantalla de inicio de sesion.
+CuentaIncorrecta--La cuenta bancaria introducida no corresponde, la compra ha sido cancelada.
+SaldoInsuficiente--Su saldo es insuficiente para completar la compra, compra cancelada.
+FechaEntrega--Su orden sera entregada el: 

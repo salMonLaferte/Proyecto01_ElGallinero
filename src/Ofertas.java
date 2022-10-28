@@ -40,29 +40,31 @@ public class Ofertas implements Observable{
      */
     public static void generaOfertas(){
         Random rand = new Random();
-        int ofertasAzar = rand.nextInt(10);
+        int ofertasAzar = rand.nextInt(2);
         try{
             BufferedReader in = new BufferedReader(new FileReader("./catalogo/catalogo.txt"));
             String line;
             while(((line=in.readLine())!=null)){
-                int descuento = rand.nextInt(101);
-                if(line.contains("Electrodomesticos")&&line.contains(Integer.toString(ofertasAzar))){
-                    String ofertasEsp = "\nESP--";
-                    ofertasEsp += line;
-                    instanciaUnica.ofertas.put(ofertasEsp, descuento);
+                if(ofertasAzar == 1){
+                    int descuento = rand.nextInt(50);
+                    if(line.contains("Electrodomesticos")){
+                        String ofertasEsp = "\nESP--";
+                        ofertasEsp += line;
+                        instanciaUnica.ofertas.put(ofertasEsp, descuento);
+                    }
+                    if(line.contains("Alimento")){
+                        String ofertasMex = "\nMX--";
+                        ofertasMex += line;
+                        instanciaUnica.ofertas.put(ofertasMex, descuento);
+                    }
+                    if(line.contains("Electronica")){
+                        String ofertasUSA = "\nUSA--";
+                        ofertasUSA += line;
+                        instanciaUnica.ofertas.put(ofertasUSA, descuento);
+                    }
                 }
-                if(line.contains("Alimento")&&line.contains(Integer.toString(ofertasAzar))){
-                    String ofertasMex = "\nMX--";
-                    ofertasMex += line;
-                    instanciaUnica.ofertas.put(ofertasMex, descuento);
-                }
-                if(line.contains("Electronica")&&line.contains(Integer.toString(ofertasAzar))){
-                    String ofertasUSA = "\nUSA--";
-                    ofertasUSA += line;
-                    instanciaUnica.ofertas.put(ofertasUSA, descuento);
-                }
-                    
-        }
+                ofertasAzar = rand.nextInt(2);
+            }
             in.close();
            }catch(FileNotFoundException e){
             System.out.println(e);
@@ -81,6 +83,22 @@ public class Ofertas implements Observable{
         }catch(FileNotFoundException e){
             System.out.println(e);
         }
+    }
+
+    /**
+     * Busca si existe una oferta para el producto y pais especificado
+     * @param pais
+     * @param codigoBarras
+     * @return el porcentage del descuento como un entero o -1 si dicha oferta no existe.
+     */
+    public static int buscarOferta(String pais, String codigoBarras){
+        for (String llave : instanciaUnica.ofertas.keySet()) {
+            String[] dataProducto = llave.split("--");
+            if(("\n" + pais).equals(dataProducto[0]) && codigoBarras.equals(dataProducto[1]) ){
+                return instanciaUnica.ofertas.get(llave);
+            }
+        }
+        return -1;
     }
 
     /**

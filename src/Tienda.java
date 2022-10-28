@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -23,13 +24,18 @@ public class Tienda {
         Cliente.leerClientes();
         //Genera las ofertas regionales y los guarda en ofertas.txt
         Ofertas.generaOfertas();
+        Ofertas.enviaOfertas();
         //Notifica a cada uno de los clientes sobre sus ofertas de este día, agregandolo a la bitacora de cada cliente
         Ofertas ofertas = Ofertas.obtenerInstanciaUnica();
         ofertas.notificarObservadores();
         CatalogoProxy catalogoProxy = new CatalogoProxy();
         while(true){
-            iniciarSesion();
+            boolean inicio = iniciarSesion();
+            if(!inicio){
+                break;
+            }
             interfazDeUsuario.saludar();
+            System.out.print(" " + proxyCliente.getNombre() + "\n");
             int opcion = 1;
             while(opcion == 1){
                 interfazDeUsuario.mostrarMenuPrincipal();
@@ -45,7 +51,7 @@ public class Tienda {
                 for(int i=-1; i <= catalogoProxy.obtenerTamano(); i++ ){
                     opciones[i+1] = i;
                 }
-                while(opcion !=0){
+                while(opcion !=0 && opcion !=-1){
                     interfazDeUsuario.mostrarIndicacionCarrito();
                     opcion = obtenerEntradaDelUsuario( opciones);
                     if(opcion == 0 || opcion == -1)
@@ -54,6 +60,9 @@ public class Tienda {
                     interfazDeUsuario.productoAgregadoExitosamente();
                 }
                 if(opcion == 0){
+                    interfazDeUsuario.mostrarMensajeMonto();
+                    double monto = calcularMontoDeLaCompra();
+                    System.out.print(monto+"\n");
                     interfazDeUsuario.mostrarMensajeCuentaBancaria();
                     scan = new Scanner(System.in);
                     String account = scan.nextLine();
@@ -62,11 +71,24 @@ public class Tienda {
                         int[] opcionesConfirmacion = {1,2};
                         opcion = obtenerEntradaDelUsuario(opcionesConfirmacion);
                         if(opcion == 1){
-                            proxyCliente.realizarCompra(calcularMontoDeLaCompra());
+                            if(proxyCliente.realizarCompra(calcularMontoDeLaCompra())){
+                                System.out.println(interfazDeUsuario.getMensaje("CompraConcretada"));
+                                imprimirTicket();
+                                interfazDeUsuario.despedir();
+                            }else{
+                                System.out.println(interfazDeUsuario.getMensaje("SaldoInsuficiente"));
+                            }
+                           
                         }
+                    }else{
+                        System.out.println(interfazDeUsuario.getMensaje("CuentaIncorrecta"));
                     }
                 }
-            }  
+                else{
+                    System.out.println(interfazDeUsuario.getMensaje("CompraCancelada"));
+                }
+            }
+            System.out.println(interfazDeUsuario.getMensaje("Regresando"));  
         }
     }
 
@@ -74,23 +96,56 @@ public class Tienda {
         Iterator<Producto> it = proxyCliente.obtenerIterador();
         double amount = 0;
         while(it.hasNext()){
-            amount += it.next().getPrecio();
+            Producto producto = it.next();
+            int descuento = Ofertas.buscarOferta(proxyCliente.getPais(), producto.getCodigoDeBarras().toString());
+            if(descuento == -1)
+                amount += producto.getPrecio();
+            else
+                amount += producto.getPrecio() *((double)1- (double)descuento/(double)100);
         }
         return amount;
     }
 
-    public static void iniciarSesion(){
+    public static void imprimirTicket(){
+        HashMap<String, Integer> ticket = new HashMap<>();
+        Iterator<Producto> it = proxyCliente.obtenerIterador();
+        while(it.hasNext()){
+            Producto producto = it.next();
+            String description = producto.getCodigoDeBarras() + "--" + producto.getNombre() + "--" + producto.getPrecio();
+            if(ticket.containsKey(description)){
+                ticket.put(description, ticket.get(description)+1);
+            }
+            else{
+                ticket.put(description, 1);
+            }
+        }
+        String textTicket ="";
+        for (String llave : ticket.keySet()) {
+            textTicket += llave + "-- "+ interfazDeUsuario.getMensaje("Cantidad") + ": " + ticket.get(llave);
+            String[] param = llave.split("--");
+            int descuento = Ofertas.buscarOferta(proxyCliente.getPais(), param[0]);
+            if(descuento != -1){
+                textTicket += "--" + interfazDeUsuario.getMensaje("Descuento") + ": %" + descuento; 
+            }
+            textTicket +="\n";
+        }
+        textTicket += interfazDeUsuario.getMensaje("Total") + ": " + calcularMontoDeLaCompra(); 
+        System.out.println(textTicket);
+    }
+
+    public static boolean iniciarSesion(){
         //Pedir el inicio de sesión de la clase
         try {
             proxyCliente = Cliente.validarCliente();
             if(proxyCliente == null){
-                return;
+                return false;
             }
         } catch (Exception e) {
             System.out.println("Ha ocurrido un error.");
-            return;
+            return false;
         }
         interfazDeUsuario = fabricaRegional.crearInterfaz(proxyCliente.getPais());
+        return true;
     }
 
     /**
