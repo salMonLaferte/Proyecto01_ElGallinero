@@ -293,7 +293,7 @@ public class Cliente implements Serializable, Observador, ClienteInterface{
     }
 
     /**
-     * Metodo que actualiza las ofertas del cliente,
+     * Metodo que actualiza las ofertas del cliente en su bitacora,
      * en caso de lo contrario se imprime que no se
      * pudo mostrar. 
      */

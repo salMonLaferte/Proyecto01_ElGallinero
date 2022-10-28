@@ -27,7 +27,11 @@ public class ProxyCliente implements ClienteInterface {
         carrito.add(producto);
     }
 
-    public Iterator<Producto> obtenerIterador(){
+    /**
+     * Regresa un iterador para recorrer los productos del carrito
+     * @return
+     */
+    public Iterator<Producto> obtenerIteradorCarrito(){
         return carrito.iterator();
     }
 

@@ -95,6 +95,9 @@ public class Catalogo implements CatalogoInterface{
         return productos.get(index);
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public int obtenerTamano() {
         return productos.size();

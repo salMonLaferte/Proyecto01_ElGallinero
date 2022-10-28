@@ -5,7 +5,7 @@ public class CatalogoProxy implements CatalogoInterface{
     private Catalogo catalogoReal = Catalogo.obtenerInstanciaUnica();
 
     /**
-     * Metodo que dado un iterador, imprime el catalogo.
+     * {@inheritDoc}
      */
     @Override
     public void ImprimirCatalogo() {
@@ -19,7 +19,7 @@ public class CatalogoProxy implements CatalogoInterface{
     
     /**
      * Metodo que dado un indice se obtiene la copia del 
-     * producto contenido en dicho indice.
+     * producto contenido en dicho indice en el catalogo original.
      * @param index Indice del producto
      * @return Producto copia
      */
@@ -30,6 +30,10 @@ public class CatalogoProxy implements CatalogoInterface{
         return copia;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int obtenerTamano(){
         return catalogoReal.obtenerTamano();
     }

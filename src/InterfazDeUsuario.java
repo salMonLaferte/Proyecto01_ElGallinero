@@ -54,14 +54,22 @@ public abstract class InterfazDeUsuario {
          }
     }
 
+    /**
+     * Imprime un saludo para el usuario
+     */
     public void saludar(){
         System.out.println(textos.get("Saludo"));
     }
-
+    /**
+     * Imprime un mensaje que agradece la compra al usuario.
+     */
     public void despedir(){
         System.out.println(textos.get("Despedida"));
     }
 
+    /**
+     * Imprime el menu principal y sus opciones
+     */
     public void mostrarMenuPrincipal(){
         System.out.println(textos.get("MenuTexto"));
         System.out.println("1." + textos.get("OpcionCatalogo"));
@@ -69,21 +77,35 @@ public abstract class InterfazDeUsuario {
         System.out.println("3." + textos.get("OpcionSalir"));
     }
 
+    /**
+     * Imprime las indicaciones para agregar productos al carrito
+     */
     public void mostrarIndicacionCarrito(){
         System.out.println(textos.get("Indicacion"));
         System.out.println(textos.get("Indicacion2"));
         System.out.println(textos.get("Indicacion3"));
     }
 
+    /**
+     * Imprime un mensaje de que un producto fue agregado exitosamente
+     */
     public void productoAgregadoExitosamente(){
         System.out.println(textos.get("ProductoAgregado"));
     }
 
+    /**
+     * Imprime el mensaje de que se está en la pagina de compra segura y pide 
+     * al usuario introducir la cuenta bancaria
+     */
     public void mostrarMensajeCuentaBancaria(){
         System.out.println(textos.get("CompraSegura"));
         System.out.println(textos.get("IntroduceCuenta"));
     }
 
+    /**
+     * Imprime un mensaje que dice que la cuenta bancaria ha sido validada
+     * y pregunta si se desea continuar con la compra, dando las opciones si y no
+     */
     public void mostrarConfirmacion(){
         System.out.println(textos.get("CuentaValidada"));
         System.out.println(textos.get("Confirmacion"));
@@ -91,10 +113,18 @@ public abstract class InterfazDeUsuario {
         System.out.println("2." + textos.get("No"));
     }
 
+    /**
+     * Imprime un mensaje que dice que el monto de la compra es el siguiente
+     */
     public void mostrarMensajeMonto(){
         System.out.print(textos.get("Monto"));
     }
 
+    /**
+     * Obtiene un texto dada la llave de dicho texto.
+     * @param key
+     * @return
+     */
     public String getMensaje(String key){
         return textos.get(key);
     }

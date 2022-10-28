@@ -35,18 +35,34 @@ public class Producto{
         return producto;
     }
 
+    /**
+     * Regresa el precio del producto
+     * @return
+     */
     public double getPrecio(){
         return precio;
     }
 
+    /**
+     * Regresa el nombre del producto
+     * @return
+     */
     public String getNombre(){
         return nombre;
     }
 
+    /**
+     * Regresa el departamento al cual pertenece el producto
+     * @return
+     */
     public String getDepartamento(){
         return departamento;
     }
 
+    /**
+     * Regresa el codigo de barras del producto
+     * @return
+     */
     public String getCodigoDeBarras(){
         return codigoDeBarras;
     } 

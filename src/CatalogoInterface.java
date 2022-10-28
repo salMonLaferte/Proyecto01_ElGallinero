@@ -2,8 +2,7 @@
 public interface CatalogoInterface {
     
     /**
-     * Metodo que imprime el catalogo original
-     * o el catalogo Proxy.
+     * Metodo que imprime el catalogo 
      */
     public void ImprimirCatalogo();
     
@@ -15,6 +14,9 @@ public interface CatalogoInterface {
      */
     public Producto obtenerProducto(int index);
 
+    /**
+     * Regresa el la cantidad de productos que contiene el catalogo.
+     */
     public int obtenerTamano();
     
 }

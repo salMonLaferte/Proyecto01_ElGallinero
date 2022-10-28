@@ -68,3 +68,16 @@ ESP--1234567-- Microondas Whirlpool Silver-- Electrodomesticos-- 1890, Con un % 
 ESP--0987654-- Licuadora Oster Acero Inoxidable-- Electrodomesticos-- 784, Con un % de descuento: 28, 
 ESP--1234567-- Microondas Whirlpool Silver-- Electrodomesticos-- 1890, Con un % de descuento: 22, 
 >>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<
+ESP--0987654-- Licuadora Oster Acero Inoxidable-- Electrodomesticos-- 784, Con un % de descuento: 15, 
+ESP--1234567-- Microondas Whirlpool Silver-- Electrodomesticos-- 1890, Con un % de descuento: 35, 
+>>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<
+ESP--0987654-- Licuadora Oster Acero Inoxidable-- Electrodomesticos-- 784, Con un % de descuento: 37, 
+ESP--1234567-- Microondas Whirlpool Silver-- Electrodomesticos-- 1890, Con un % de descuento: 10, 
+>>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<
+>>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<
+ESP--0987654-- Licuadora Oster Acero Inoxidable-- Electrodomesticos-- 784, Con un % de descuento: 40, 
+>>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<
+ESP--0987654-- Licuadora Oster Acero Inoxidable-- Electrodomesticos-- 784, Con un % de descuento: 41, 
+ESP--7654321-- Freidora de Aire RC-- Electrodomesticos-- 999, Con un % de descuento: 12, 
+ESP--1234567-- Microondas Whirlpool Silver-- Electrodomesticos-- 1890, Con un % de descuento: 42, 
+>>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<
