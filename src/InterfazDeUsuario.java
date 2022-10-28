@@ -54,36 +54,40 @@ public abstract class InterfazDeUsuario {
          }
     }
 
-    /**
-     * Metodo que denomina la palabra "Saludo"
-     * como key del HashMap.
-     */
-    protected void saludar(){
+    public void saludar(){
         System.out.println(textos.get("Saludo"));
     }
 
-    /**
-     * Metodo que denomina la palabra "Despedida"
-     * como key del HashMap.
-     */
-    protected void despedir(){
+    public void despedir(){
         System.out.println(textos.get("Despedida"));
     }
 
-    /**
-     * Metodo que denomina la palabra "Opciones"
-     * como key del HashMap.
-     */
-    protected void muestraOpciones(){
-        System.out.println(textos.get("Opciones"));
+    public void mostrarMenuPrincipal(){
+        System.out.println(textos.get("MenuTexto"));
+        System.out.println("1." + textos.get("OpcionCatalogo"));
+        System.out.println("2." + textos.get("OpcionCompra"));
+        System.out.println("3." + textos.get("OpcionSalir"));
     }
 
-    /**
-     * Metodo que denomina la palabra "Menu"
-     * como key del HashMap.
-     */
-    protected void mostrarMenuPrincipal(){
-        System.out.println(textos.get("Menu"));
+    public void mostrarIndicacionCarrito(){
+        System.out.println(textos.get("Indicacion"));
+        System.out.println(textos.get("Indicacion2"));
+        System.out.println(textos.get("Indicacion3"));
     }
 
+    public void productoAgregadoExitosamente(){
+        System.out.println(textos.get("ProductoAgregado"));
+    }
+
+    public void mostrarMensajeCuentaBancaria(){
+        System.out.println(textos.get("CompraSegura"));
+        System.out.println(textos.get("IntroduceCuenta"));
+    }
+
+    public void mostrarConfirmacion(){
+        System.out.println(textos.get("CuentaValidada"));
+        System.out.println(textos.get("Confirmacion"));
+        System.out.println("1." + textos.get("Si"));
+        System.out.println("2." + textos.get("No"));
+    }
 }

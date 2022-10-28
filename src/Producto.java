@@ -34,4 +34,21 @@ public class Producto{
         producto += "Precio: " + precio + "\n";
         return producto;
     }
+
+    public double getPrecio(){
+        return precio;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
+
+    public String getDepartamento(){
+        return departamento;
+    }
+
+    public long getCodigoDeBarras(){
+        return codigoDeBarras;
+    } 
+
 }

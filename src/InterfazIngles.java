@@ -8,5 +8,4 @@ public class InterfazIngles extends InterfazDeUsuario {
     String obtenerIdioma() {
         return "USA";
     }
-    
 }

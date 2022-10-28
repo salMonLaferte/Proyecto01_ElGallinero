@@ -10,8 +10,10 @@ public class CatalogoProxy implements CatalogoInterface{
     @Override
     public void ImprimirCatalogo() {
         Iterator<Producto> it = catalogoReal.obtenerIterador();
+        int count = 1;
         while(it.hasNext()){
-            System.out.println(it.next());
+            System.out.println(count + ". " + it.next());
+            count++;
         }
     }
     
@@ -23,8 +25,13 @@ public class CatalogoProxy implements CatalogoInterface{
      */
     @Override
     public Producto obtenerProducto(int index) {
-        Producto producto = catalogoReal.obtenerProducto(index);
+        Producto producto = catalogoReal.obtenerProducto(index-1);
         Producto copia = new Producto(producto.codigoDeBarras, producto.nombre , producto.departamento, producto.precio);
         return copia;
     }
+
+    public int obtenerTamano(){
+        return catalogoReal.obtenerTamano();
+    }
+
 }

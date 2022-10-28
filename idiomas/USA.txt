@@ -1,7 +1,16 @@
 Saludo--Hello, Welcome to the store!
 Despedida--Thank you for your visit, come back soon!
-Opciones--This is the catalog:
 MenuTexto--¿What do you want to do?
 OpcionCatalogo--See catalog
 OpcionCompra--Shopping
 OpcionSalir--Exit
+Indicacion--Introduce the number of the product that you want to add to your cart. 
+Indicacion2--Enter 0 to finish selecting products.
+Indicacion3--Enter -1 to cancel your purchase.
+ProductoAgregado--Product added succesfully!
+CompraSegura--This is the safe purchase screen.
+IntroduceCuenta--Please enter the number of your bank account to proceed.
+CuentaValidada--Your bank account was succesfully validated.
+Confirmacion--¿Are you sure you want to complete this pruchase?
+Si--Yes
+No--No

@@ -60,7 +60,6 @@ public class Catalogo implements CatalogoInterface{
                 String[] keyVal = linea.split("--");
                 if(keyVal.length == 4){
                     Producto producto = new Producto(Long.parseLong(keyVal[0]), keyVal[1], keyVal[2], Double.parseDouble(keyVal[3])); 
-                    System.out.println(producto);
                     instanciaUnica.productos.add(producto);
                 }
             }
@@ -94,5 +93,10 @@ public class Catalogo implements CatalogoInterface{
     @Override
     public Producto obtenerProducto(int index) {
         return productos.get(index);
+    }
+
+    @Override
+    public int obtenerTamano() {
+        return productos.size();
     }
 }

@@ -14,5 +14,7 @@ public interface CatalogoInterface {
      * @return Producto
      */
     public Producto obtenerProducto(int index);
+
+    public int obtenerTamano();
     
 }

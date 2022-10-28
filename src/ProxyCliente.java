@@ -1,15 +1,19 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+
 /** Clase que representa al cliente Proxy*/
 public class ProxyCliente implements ClienteInterface {
     /** Cliente real */
     private Cliente clienteReal;
+
     /** Carrito que guarda la compra del cliente */
-    private ArrayList<Producto> carrito;
+    private ArrayList<Producto> carrito = new ArrayList<>();
 
     /**
      * Metodo constructor de la clase ProxyCliente
      * @param cliente Cliente proxy
      */
+
     ProxyCliente (Cliente cliente){
         clienteReal = cliente;
     }
@@ -21,6 +25,10 @@ public class ProxyCliente implements ClienteInterface {
      */
     public void agregarAlCarrito(Producto producto){
         carrito.add(producto);
+    }
+
+    public Iterator<Producto> obtenerIterador(){
+        return carrito.iterator();
     }
 
     /**
