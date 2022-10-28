@@ -22,3 +22,7 @@ USA--3456789-- Tv Philips 40 pulgadas-- Electronica-- 4999, Con un % de descuent
 USA--9876543-- Bocina Echo Dot-- Electronica-- 749, Con un % de descuento: 18, 
 USA--2345678-- Laptop Hp Omen-- Electronica-- 49999, Con un % de descuento: 24
 >>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<
+USA--3456789-- Tv Philips 40 pulgadas-- Electronica-- 4999, Con un % de descuento: 86, 
+USA--9876543-- Bocina Echo Dot-- Electronica-- 749, Con un % de descuento: 18, 
+USA--2345678-- Laptop Hp Omen-- Electronica-- 49999, Con un % de descuento: 24
+>>>>>>>>>> Válido mientras no existan ofertas debajo de esta linea <<<<<<<<<<<<<<<
