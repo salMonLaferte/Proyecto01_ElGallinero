@@ -182,7 +182,7 @@ public class Cliente implements Serializable, Observador, ClienteInterface{
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
         try{
-            archivo = new File("./datosClientes/clientes.txt");
+            archivo = new File("../datosClientes/clientes.txt");
             fileReader = new FileReader(archivo);
             bufferedReader = new BufferedReader(fileReader);
             String linea;
@@ -246,7 +246,7 @@ public class Cliente implements Serializable, Observador, ClienteInterface{
      */
     public void escribirOfertas() throws IOException{
         try{
-        BufferedReader in = new BufferedReader(new FileReader("./ofertasClientes/ofertas.txt"));
+        BufferedReader in = new BufferedReader(new FileReader("../ofertasClientes/ofertas.txt"));
         String line;
         while(((line=in.readLine())!=null)){ 
             String nuevo = line.replace("{","").replace("}","").replace("=", ", Con un % de descuento: ");
@@ -271,10 +271,10 @@ public class Cliente implements Serializable, Observador, ClienteInterface{
      */
     public void mostrarOfertaAlCliente() throws IOException{
         String nombreDeUsuario=this.nombreDeUsuario;
-        File file = new File("./ofertasClientes/"+nombreDeUsuario+".txt");
+        File file = new File("../ofertasClientes/"+nombreDeUsuario+".txt");
         FileWriter fw= new FileWriter(file,true);
         try{
-            BufferedReader in = new BufferedReader(new FileReader("./ofertasClientes/ofertas.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("../ofertasClientes/ofertas.txt"));
             String line;
             while(((line=in.readLine())!=null)){ 
                 String nuevo = line.replace("{","").replace("}","").replace("=", ", Con un % de descuento: ");

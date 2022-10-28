@@ -42,7 +42,7 @@ public class Ofertas implements Observable{
         Random rand = new Random();
         int ofertasAzar = rand.nextInt(2);
         try{
-            BufferedReader in = new BufferedReader(new FileReader("./catalogo/catalogo.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("../catalogo/catalogo.txt"));
             String line;
             while(((line=in.readLine())!=null)){
                 if(ofertasAzar == 1){
@@ -77,7 +77,7 @@ public class Ofertas implements Observable{
      * Metodo que sobreescribe las ofertas en el archivo txt.
      */
     public static void enviaOfertas(){
-        String nombreDelArchivo = "./ofertasClientes/ofertas.txt";
+        String nombreDelArchivo = "../ofertasClientes/ofertas.txt";
         try(PrintStream fout = new PrintStream(nombreDelArchivo)){
             fout.println(instanciaUnica.ofertas);
         }catch(FileNotFoundException e){

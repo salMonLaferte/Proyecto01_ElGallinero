@@ -52,7 +52,7 @@ public class Catalogo implements CatalogoInterface{
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
         try{
-            archivo = new File("./catalogo/catalogo.txt");
+            archivo = new File("../catalogo/catalogo.txt");
             fileReader = new FileReader(archivo);
             bufferedReader = new BufferedReader(fileReader);
             String linea;

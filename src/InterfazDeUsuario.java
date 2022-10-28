@@ -31,7 +31,7 @@ public abstract class InterfazDeUsuario {
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
         try{
-            archivo = new File("./idiomas/" + obtenerIdioma() + ".txt");
+            archivo = new File("../idiomas/" + obtenerIdioma() + ".txt");
             fileReader = new FileReader(archivo);
             bufferedReader = new BufferedReader(fileReader);
             String linea;
