@@ -1,3 +1,4 @@
-Saludo--Joder tio, bienvenido, os prometo que habeis encontrado con pedazo de tienda!
+Saludo--Querido comprador, ¡bienvenido!
 Despedida--¡Gracias por tu preferencia!
 Opciones--A continuacion os muestro el catalogo.
+Menu--¿Que deseas hacer?\n1.Ver catalogo\n2.Realizar una compra\n3.Salir.

@@ -53,4 +53,8 @@ public abstract class InterfazDeUsuario {
         System.out.println(textos.get("Opciones"));
     }
 
+    protected void mostrarMenuPrincipal(){
+        System.out.println(textos.get("Menu"));
+    }
+
 }

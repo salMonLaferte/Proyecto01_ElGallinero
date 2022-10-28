@@ -19,13 +19,9 @@ public class Pruebas {
         interfaz.despedir();
         //Catalogo
         System.out.println("-------- CATALOGO ---------");
-        Catalogo catalogo = Catalogo.obtenerInstanciaUnica();
+        CatalogoProxy catalogo = new CatalogoProxy();
         ///Producto
-        Iterator<Producto> it = catalogo.obtenerIterador();
-        while(it.hasNext()){
-            Producto p = it.next();
-            System.out.println(p);
-        }
+        catalogo.ImprimirCatalogo();
         //Ofertas
         Ofertas ofertas = Ofertas.obtenerInstanciaUnica();
         Ofertas.enviaOfertas();

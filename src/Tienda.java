@@ -5,29 +5,32 @@ public class Tienda {
     private static Scanner scan = new Scanner(System.in);
     private static FabricaRegional fabricaRegional = new FabricaRegional();
     private static InterfazDeUsuario interfazDeUsuario = null;
-    private static Cliente cliente = null;
+    private static ProxyCliente proxyCliente = null;
 
 
     public static void main(String args[] ){
-        //Crea la base de datos de clientes de prueba
+        //Lee la lista de clientes desde un archivo de texto
         Cliente.leerClientes();
         //Genera las ofertas regionales y los guarda en ofertas.txt
         Ofertas.generaOfertas();
-        //Notifica a cada uno de los clientes
+        //Notifica a cada uno de los clientes sobre sus ofertas de este día, agregandolo a la bitacora de cada cliente
         Ofertas ofertas = Ofertas.obtenerInstanciaUnica();
         ofertas.notificarObservadores();
         //Pedir el inicio de sesión de la clase
         try {
-            cliente = Cliente.validarCliente();
-            if(cliente == null){
+            proxyCliente = Cliente.validarCliente();
+            if(proxyCliente == null){
                 return;
             }
         } catch (Exception e) {
             System.out.println("Ha ocurrido un error.");
             return;
         }
-        interfazDeUsuario = fabricaRegional.crearInterfaz(cliente.getPais());
+        interfazDeUsuario = fabricaRegional.crearInterfaz(proxyCliente.getPais());
         interfazDeUsuario.saludar();
+        interfazDeUsuario.mostrarMenuPrincipal();
+        
+
     }
 
      /**

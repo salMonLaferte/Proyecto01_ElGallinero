@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-public class Catalogo {
+public class Catalogo implements CatalogoInterface{
 
     private ArrayList<Producto> productos;
     private static Catalogo instanciaUnica;
@@ -21,7 +21,7 @@ public class Catalogo {
         return instanciaUnica;
     }
 
-    public Iterator<Producto> obtenerIterador(){
+    public  Iterator<Producto> obtenerIterador(){
         return productos.iterator();
     }
      
@@ -53,5 +53,17 @@ public class Catalogo {
                 e2.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void ImprimirCatalogo() {
+        for (Producto producto : productos) {
+            System.out.println(producto);
+        }
+    }
+
+    @Override
+    public Producto obtenerProducto(int index) {
+        return productos.get(index);
     }
 }

@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Cliente implements Serializable, Observador{
+public class Cliente implements Serializable, Observador, ClienteInterface{
 
     private String nombreDeUsuario, contra, nombre, telefono, direccion, cuentaBancaria, pais;
     double dineroDisponible;
@@ -53,6 +53,7 @@ public class Cliente implements Serializable, Observador{
         this.pais=pais;
     }
 
+    @Override
     public String getNombreDeUsuario(){
         return nombreDeUsuario;
     }
@@ -61,14 +62,17 @@ public class Cliente implements Serializable, Observador{
         return contra;
     }
 
+    @Override
     public String getNombre(){
         return nombre;
     }
 
+    @Override
     public String getTelefono(){
         return telefono;
     }
 
+    @Override
     public String getDireccion(){
         return direccion;
     }
@@ -77,8 +81,13 @@ public class Cliente implements Serializable, Observador{
         return cuentaBancaria;
     }
 
+    @Override
     public String getPais(){
         return pais;
+    }
+    
+    public double getDineroDisponible(){
+        return dineroDisponible;
     }
 
     public String toString(){
@@ -116,7 +125,7 @@ public class Cliente implements Serializable, Observador{
          }
     }
 
-    public static Cliente validarCliente(){
+    public static ProxyCliente validarCliente(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Escribe tu nombre de usuario");
         String nombreDeUsuario=sc.nextLine();
@@ -124,12 +133,12 @@ public class Cliente implements Serializable, Observador{
         for (Cliente cliente : listaDeClientes) {
             if(cliente.getNombreDeUsuario().equals(nombreDeUsuario)){
                 indicadorUsuarioExiste = true;
-                System.out.println("Escribe la contrasenia");
+                System.out.println("Escribe la contrasena");
                 String contra = sc.nextLine();
                 if(cliente.getContra().equals(contra)){
-                    return cliente;
+                    return new ProxyCliente(cliente);
                 }
-                System.out.println("La contra es incorrecta :-{");
+                System.out.println("La contrasena es incorrecta :-{");
                 break;
             }
         }
@@ -188,5 +197,11 @@ public class Cliente implements Serializable, Observador{
         } catch (Exception e) {
             System.out.println("No se pudieron mostrar las ofertas al cliente");
         }
+    }
+
+    @Override
+    public boolean realizarCompra(double amount) {
+        dineroDisponible -= amount;
+        return false;
     }
 }

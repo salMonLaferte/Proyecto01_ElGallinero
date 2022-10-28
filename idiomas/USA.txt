@@ -1,3 +1,7 @@
 Saludo--Hello, Welcome to the store!
 Despedida--Thank you for your visit, come back soon!
 Opciones--This is the catalog:
+MenuTexto--¿What do you want to do?
+OpcionCatalogo--See catalog
+OpcionCompra--Shopping
+OpcionSalir--Exit

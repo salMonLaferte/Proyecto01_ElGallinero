@@ -1,3 +1,4 @@
 Saludo--Hola, bienvenido a la tienda.
 Despedida--¡Gracias por su visita!
 Opciones--A continuacion te muestro el catalogo.
+Menu--¿En que le puedo ayudar?\n1.Ver catalogo\n2.Realizar una compra\n3.Salir.
